@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -9,15 +10,18 @@ import (
 )
 
 func main() {
-	file, err := os.Open("problems.csv")
+	csvFile := flag.String("csv", "problems.csv", "ingrese el nombre de su csv, nombre.csv. Funciona con csv del formato pregunta y respuesta")
+	file, err := os.Open(*csvFile)
 	if err != nil {
 		fmt.Println("No se pudo abrir el csv:", err)
+		os.Exit(1)
 	}
 	defer file.Close()
 	reader := csv.NewReader(file)
 	preguntas, err := reader.ReadAll()
 	if err != nil {
 		log.Fatal("Error al leer el csv:", err)
+		os.Exit(1)
 	}
 	contador := 0
 	var useranswer string
