@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -25,6 +26,8 @@ func main() {
 		fmt.Println("Pregunta:", pregunta[0])
 		fmt.Print("Ingresa tu respuesta: ")
 		fmt.Scanln(&useranswer)
+		useranswer = strings.ToLower(useranswer)
+		useranswer = strings.TrimSpace(useranswer)
 		if useranswer == pregunta[1] {
 			contador++
 		}
