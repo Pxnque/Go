@@ -11,6 +11,7 @@ import (
 
 func main() {
 	csvFile := flag.String("csv", "problems.csv", "ingrese el nombre de su csv, nombre.csv. Funciona con csv del formato pregunta y respuesta")
+	flag.Parse()
 	file, err := os.Open(*csvFile)
 	if err != nil {
 		fmt.Println("No se pudo abrir el csv:", err)
